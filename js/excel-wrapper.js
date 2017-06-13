@@ -8,6 +8,7 @@ function handleFile(e) {
         var name = f.name;
         reader.readAsBinaryString(f);
         reader.onload = function (e) {
+            $("#dvOutput").html("");
             var data = e.target.result;
             var result=[];
             //reading data from excel
@@ -19,13 +20,22 @@ function handleFile(e) {
                 //Convert the cell value to Json
                 var roa = XLSX.utils.sheet_to_json(workbook.Sheets[y]);
                 if (roa.length > 0) {
-                    result[count] = roa;
+                    //result[count] = roa;
+                     $("#dvOutput").append(
+                     "<div class='sheet'>"+
+                        "<div>Sheet Name :" +workbook.SheetNames[count]+"</div>"+
+                        "<div>"+
+                            "<pre>"+JSON.stringify(roa, null, 4)+"</pre>"+
+                        "</div>"+
+                     "</div>"
+                    );
                     count++;
                 }
             });
             //Get the first column first cell value
             //alert(result);
-            $("#dvOutput").html(JSON.stringify(result));
+            //$("#dvOutput").html(JSON.stringify(result));
+            $("#files").val("");
         };
     }
 }
