@@ -22,7 +22,7 @@ function handleFile(e) {
                 if (roa.length > 0) {
                     //result[count] = roa;
                      $("#dvOutput").append(
-                     "<div class='sheet'>"+
+                     "<div class='col-sm-4'>"+
                         "<div>Sheet Name :" +workbook.SheetNames[count]+"</div>"+
                         "<div>"+
                             "<pre>"+JSON.stringify(roa, null, 4)+"</pre>"+
